@@ -1,0 +1,34 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+
+public class MFSUFix implements Listener {
+	
+	//Фикс дюпа брони в MFSU/MFE/BatBox
+	@EventHandler (priority = EventPriority.HIGHEST)
+    public void onMFSU(InventoryClickEvent e)
+    {
+    	if((e.getInventory() != null && e.getCurrentItem() != null && e.getView().getPlayer() != null) && ((e.getInventory().getTitle().equalsIgnoreCase("BatBox") || e.getInventory().getTitle().equalsIgnoreCase("MFE") || e.getInventory().getTitle().equalsIgnoreCase("MFSU") || e.getInventory().getTitle().equalsIgnoreCase("CESU"))))
+	    {
+	    	if(e.getClick() == ClickType.NUMBER_KEY)
+	    	{
+	    		e.setCancelled(true); 
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Не надо так...");
+	    	}
+	    	else
+	    	{
+	    		return;
+	    	}
+	    }
+	    else
+	    {
+	    	return;
+	    }
+    }
+
+}

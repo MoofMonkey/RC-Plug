@@ -1,0 +1,38 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
+
+public class TreeFix implements Listener {
+	
+	// TreeFix
+	private BukkitTask task;
+	private void scheduleFieldResetTask() {
+        this.task = Bukkit.getScheduler().runTaskTimer((Plugin)this, (Runnable)new Runnable() {
+            @Override
+            public void run() {
+                for (final World world : Bukkit.getWorlds()) {
+                    try {
+                        final Method declaredMethod = world.getClass().getDeclaredMethod("getHandle", (Class<?>[])new Class[0]);
+                        declaredMethod.setAccessible(true);
+                        final Object invoke = declaredMethod.invoke(world, new Object[0]);
+                        final Field field = invoke.getClass().getField("captureTreeGeneration");
+                        field.setAccessible(true);
+                        field.set(invoke, false);
+                    }
+                    catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchFieldException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }, 0L, 1L);
+    }
+
+}

@@ -1,0 +1,25 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
+
+public class EnchTableFix implements Listener {
+	
+	@EventHandler (priority = EventPriority.HIGHEST)
+	public void onEnchant(InventoryClickEvent e)
+	{
+		if ((e.getInventory() != null) && (e.getCurrentItem() != null) && (e.getInventory().getType().equals(InventoryType.ENCHANTING)))
+	    {
+	      int i = e.getCurrentItem().getTypeId();
+	      if (i == 25131)
+	      {
+	    	  Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Запрещено класть данный предмет в стол зачарования!");
+	    	  e.setCancelled(true);
+	      }
+	    }
+	}
+}

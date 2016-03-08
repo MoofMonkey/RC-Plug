@@ -1,0 +1,26 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
+
+public class MenuFix implements Listener {
+
+	@EventHandler (priority = EventPriority.HIGHEST)
+    public void onMenu(InventoryClickEvent e)
+    {
+		if ((e.getInventory() != null) && (e.getCurrentItem() != null) && (e.getInventory().getType().equals(InventoryType.PLAYER)))
+	    {
+    		int i = e.getCurrentItem().getTypeId();
+	    	if((i == 2838) || (i == 2837) || (i == 2824) || (i == 2830) || (i == 2836) || (i == 2839) || (i == 2825) || (i == 2828) || (i == 2831) || (i == 2826) || (i == 2832) || (i == 2833) || (i == 2833) || (i == 2834) || (i == 2835))
+	    	{
+	    		e.getInventory().clear(i);
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Зачем тебе это?");
+	    	}
+	    }
+    }
+}

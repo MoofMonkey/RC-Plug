@@ -1,0 +1,62 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+
+public class BiblioCraftFix implements Listener {
+	
+	// Фикс полок из BiblioCraft
+    public void onBiblioCraft(InventoryClickEvent e)
+    {
+    	if(e.getInventory() != null && e.getCurrentItem() != null && e.getView().getPlayer() != null && e.getInventory().getName().equalsIgnoreCase("jds.bibliocraft.blocks.BookContainer"))
+	    {
+	    	if(e.getClick() == ClickType.NUMBER_KEY)
+	    	{
+	    		e.setCancelled(true); 
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Данный вид перемещения предметов запрещён!");
+	    	}
+	    	if(e.getCurrentItem().getTypeId() != 387)
+	    	{
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Действие запрещено!");
+	    		e.setCancelled(true);
+	    	}
+	    	else
+	    	{
+	    		return;
+	    	}
+	    }
+	    else
+	    {
+	    	return;
+	    }
+    }
+    
+    // Фикс полок из BiblioCraft
+    public void onFluibBottler(InventoryClickEvent e)
+    {
+    	if(e.getInventory() != null && e.getCurrentItem() != null && e.getView().getPlayer() != null && e.getInventory().getName().equalsIgnoreCase("ic2.core.block.machine.ContainerFluidBottler"))
+	    {
+	    	if(e.getClick() == ClickType.NUMBER_KEY)
+	    	{
+	    		e.setCancelled(true); 
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Данный вид перемещения предметов запрещён!");
+	    	}
+	    	if(e.getCurrentItem().getTypeId() == 30039)
+	    	{
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Действие запрещено!");
+	    		e.setCancelled(true);
+	    	}
+	    	else
+	    	{
+	    		return;
+	    	}
+	    }
+	    else
+	    {
+	    	return;
+	    }
+    }
+
+}

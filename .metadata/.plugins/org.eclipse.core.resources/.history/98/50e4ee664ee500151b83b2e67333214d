@@ -1,0 +1,127 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
+
+public class BlockPlace implements Listener {
+
+		// Фикс установки блоков
+		@EventHandler (priority = EventPriority.HIGHEST)
+		public void onBlockIC2Place(BlockPlaceEvent e)
+		{
+		    Player p = e.getPlayer();
+		    Block b = e.getBlock();
+		    int id = b.getTypeId();
+		    int data = b.getData();
+		    if (p != null)
+		    {
+		    	// Блок механизма
+		    	if ((id == 4034) && (data == 0))
+		        {
+		          e.setCancelled(true);
+		          p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		    	// Улучшенный блок механизма
+		        if ((id == 4034) && (data == 12))
+		        {
+		          e.setCancelled(true);
+		          p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // ITNT
+		        if ((id == 4020))
+		        {
+		          e.setCancelled(true);
+		          p.getInventory().removeItem(p.getInventory().getItemInHand());
+			      p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // Терраформер
+		        if ((id == 4034) && (data == 15))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // Forestry: почтовый ящик, торговая станция, сборщик марок
+		        if ((id == 1407))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // BuildCraft: Заполнитель
+		        if ((id == 1505))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // BuildCraft: Строитель
+		        if ((id == 1507))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // BuildCraft: Архитекторный стол
+		        if ((id == 1508))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // Applied Energestics: Поверхность перехода
+		        if ((id == 903) && (data == 4))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // Applied Energestics: жидкосная поверхность перехода
+		        if ((id == 508))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // IC2: Улучшенный шахтер
+		        if ((id == 4035) && (data == 11))
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // BC: Метки
+		        if (id == 1504)
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // AE: Маленький динамит
+		        if (id == 904)
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		        // Forestry: Рабочий стол
+		        //if ((id == 1406) && (data == 2))
+		        //{
+		        //	e.setCancelled(true);
+		        //	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				//    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        //}
+		        // Forestry Extras: Банка 772
+		        if (id == 772)
+		        {
+		        	e.setCancelled(true);
+		        	p.getInventory().removeItem(p.getInventory().getItemInHand());
+				    p.sendMessage("§a[§6RC-Fix§a]§c Данный блок запрещено ставить!"); return;
+		        }
+		      }
+		    }
+}

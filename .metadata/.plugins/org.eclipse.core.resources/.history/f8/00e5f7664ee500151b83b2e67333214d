@@ -1,0 +1,57 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+public class InteractFix implements Listener {
+	
+	// При нажатии на блок ПКМ ( Интеракт )
+		@EventHandler (priority = EventPriority.HIGHEST)
+		public void onInteractPlate(PlayerInteractEvent e)
+		{
+			Player p = e.getPlayer();
+		  if ((e.getClickedBlock() != null) && (e.getPlayer() != null) && (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+		  {
+			// Если при нажатии ПКМ на Тарелку из BiblioCraft, в руке есть золотое яблоко
+		    if ((e.getClickedBlock().getTypeId() == 2242) && (e.getClickedBlock().getData() == 2) && (e.getPlayer().getItemInHand().getTypeId() == 322)) {
+		      e.setCancelled(true);
+		      e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать!");
+		    }
+			// Фикс extracells (Капсула 30237 IC2)
+		    if ((e.getClickedBlock().getTypeId() == 509) && (e.getPlayer().getItemInHand().getTypeId() == 30237) && (p.getInventory().firstEmpty() == -1)) {
+		      e.setCancelled(true);
+		      e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать, когда инвертарь заполнен!");
+		    }
+			// Фикс extracells (Капсула 13326 Forestry)
+		    if ((e.getClickedBlock().getTypeId() == 509) && (e.getPlayer().getItemInHand().getTypeId() == 13326) && (p.getInventory().firstEmpty() == -1)) {
+		      e.setCancelled(true);
+		      e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать, когда инвертарь заполнен!");
+		    }
+			// Фикс extracells (Капсула 13290 Forestry)
+		    if ((e.getClickedBlock().getTypeId() == 509) && (e.getPlayer().getItemInHand().getTypeId() == 13290) && (p.getInventory().firstEmpty() == -1)) {
+		      e.setCancelled(true);
+		      e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать, когда инвертарь заполнен!");
+		    }
+			// Фикс extracells (Капсула 5277 Forestry)
+		    if ((e.getClickedBlock().getTypeId() == 509) && (e.getPlayer().getItemInHand().getTypeId() == 5277) && (p.getInventory().firstEmpty() == -1)) {
+		      e.setCancelled(true);
+		      e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать, когда инвертарь заполнен!");
+		    }
+		  }
+		}
+		
+	    // BugsFix
+	    @EventHandler (priority = EventPriority.HIGHEST)
+	    public void onInteractPlate1(final PlayerInteractEvent e) {
+	        if (e.getClickedBlock() == null || e.getPlayer() == null || e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+	            return;
+	        }
+	        if (e.getClickedBlock().getTypeId() == 2242 && e.getClickedBlock().getData() == 2 && e.getPlayer().getItemInHand().getTypeId() == 322) {
+	            e.setCancelled(true);
+	        }
+	    }
+}

@@ -1,0 +1,35 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventException;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+public class NpcFix implements Listener {
+
+	//NPC фикс
+	@EventHandler (priority = EventPriority.HIGHEST)
+	public void onUseNPCPicker(PlayerInteractEvent e) throws EventException
+	{ 
+	  if ((e.getItem() != null) && (e.getPlayer() != null))
+	  {
+		  Player p = e.getPlayer();
+		  int i = e.getItem().getTypeId();
+		  // Custom NPS
+		  if (i == 26980 || i == 1526 || i == 26972 || i == 26981 || i == 1529)
+		  {
+			  if (p.getName().equalsIgnoreCase("VENTO") || p.getName().equalsIgnoreCase("Nosferatu"))
+			  {
+				  //Можно
+			  }else
+			  {
+				  e.setCancelled(true);
+				  p.sendMessage("§a[§6RC-Fix§a]§c Нененененене!");
+			  }
+			  
+		  }
+	  }
+	}
+}

@@ -1,0 +1,43 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+public class BlockedCmds implements Listener {
+	
+	//Blocked cmds
+	@EventHandler
+	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent e)
+	{
+		Player p = e.getPlayer();
+	    if(	e.getMessage().equals("/?")				||
+	    	e.getMessage().equals("/pl") 			||
+	    	e.getMessage().equals("/plugins") 		||
+	    	e.getMessage().startsWith("/spawnmob") 	||
+	    	e.getMessage().startsWith("/pt ") 		||
+	    	e.getMessage().startsWith("/powertool")	||
+	    	e.getMessage().equals("/pos1") 			||
+	    	e.getMessage().equals("/pos2") 			||
+			e.getMessage().equals("//sel poly") 	||
+			e.getMessage().equals("/; poly") 		||
+			e.getMessage().equals("/; cuboid") 		||
+			e.getMessage().equals("/tpall") 		||
+			e.getMessage().equals("/nuke") 			||
+			e.getMessage().equals("/killall") 		||
+			e.getMessage().equals("/mobkill") 		||
+			e.getMessage().equals("/setspawn") 		||
+			e.getMessage().equals("/delspawn")		||
+			e.getMessage().equals("/clearall")		||
+			e.getMessage().contains("flag spawn")	||
+			e.getMessage().contains("delete spawn") ||
+			e.getMessage().contains("remove spawn")
+	      )
+	    {
+	        e.setCancelled(true);
+	        e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Низя :3");
+	    }
+	}
+
+}

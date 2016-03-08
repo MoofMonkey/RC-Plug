@@ -1,0 +1,25 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+public class PexFix implements Listener {
+	
+	//PermissionEx
+		@EventHandler
+		public void onPex(PlayerCommandPreprocessEvent e)
+		{
+			Player p = e.getPlayer();
+		    if(e.getMessage().startsWith("/pex") || e.getMessage().startsWith("/permission"))
+		    {
+		    	if (!p.getName().equalsIgnoreCase("VENTO"))
+				  {
+					  e.setCancelled(true);
+					  e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Неа!");
+				  }
+		    }
+		}
+
+}

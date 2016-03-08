@@ -1,0 +1,67 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+
+public class FactoriFix implements Listener {
+	
+	// FactoriFix v2.0
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onInventoryInteractForestry(final InventoryClickEvent e) {
+        if (e.getInventory() == null || e.getCurrentItem() == null || e.getView().getPlayer() == null || !e.getInventory().getTitle().equalsIgnoreCase("factory.5")) {
+            return;
+        }
+        if (e.getClick() == ClickType.NUMBER_KEY) {
+            e.setCancelled(true);
+            Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Стаканные ресурсы чаровать запрещено!");
+        }
+        if (!e.getCurrentItem().hasItemMeta()) {
+            return;
+        }
+        if (e.getCurrentItem().getTypeId() == 25131) {
+            return;
+        }
+        Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Так делать нельзя!");
+        e.setCancelled(true);
+    }
+    
+    
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onOpenInventory(InventoryOpenEvent e)
+    {
+      if (e.getInventory().getTitle().equalsIgnoreCase("factory.5"))
+      {
+        if ((e.getInventory().getItem(0) != null) && (e.getInventory().getItem(0).getItemMeta() != null) && (e.getInventory().getItem(0).getTypeId() != 25131)) {
+          e.getInventory().getItem(0).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(1) != null) && (e.getInventory().getItem(1).getItemMeta() != null) && (e.getInventory().getItem(1).getTypeId() != 25131)) {
+          e.getInventory().getItem(1).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(2) != null) && (e.getInventory().getItem(2).getItemMeta() != null) && (e.getInventory().getItem(2).getTypeId() != 25131)) {
+          e.getInventory().getItem(2).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(4) != null) && (e.getInventory().getItem(4).getItemMeta() != null) && (e.getInventory().getItem(4).getTypeId() != 25131)) {
+          e.getInventory().getItem(4).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(5) != null) && (e.getInventory().getItem(5).getItemMeta() != null) && (e.getInventory().getItem(5).getTypeId() != 25131)) {
+          e.getInventory().getItem(5).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(6) != null) && (e.getInventory().getItem(6).getItemMeta() != null) && (e.getInventory().getItem(6).getTypeId() != 25131)) {
+          e.getInventory().getItem(6).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(7) != null) && (e.getInventory().getItem(7).getItemMeta() != null) && (e.getInventory().getItem(7).getTypeId() != 25131)) {
+          e.getInventory().getItem(7).setItemMeta(null);
+        }
+        if ((e.getInventory().getItem(8) != null) && (e.getInventory().getItem(8).getItemMeta() != null) && (e.getInventory().getItem(8).getTypeId() != 25131)) {
+          e.getInventory().getItem(8).setItemMeta(null);
+        }
+      }
+      else {}
+    }
+
+}

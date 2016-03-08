@@ -1,0 +1,54 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
+
+public class AnvilFix implements Listener {
+	
+	// Фикс зачарования предметов. || Фиксит дюп с соковыжемалкой.
+	@EventHandler (priority = EventPriority.HIGHEST)
+	public void onEnchant(InventoryClickEvent e)
+	{
+		if ((e.getInventory() != null) && (e.getCurrentItem() != null) && (e.getInventory().getType().equals(InventoryType.ANVIL)))
+	    {
+	      int i = e.getCurrentItem().getTypeId();
+	       // Яблоко || Семена пшеницы || Железная руда || Вишня (F) || Капля меда || Семена тыквы || Семена арбуза || Кактус || Медвяная роса ||   Фосфор 	 ||   Песок   ||  Земля   || Булыжник || Золотой сл.||   Жел.сл   ||   Уголь    ||   Алмаз    ||  Изумруд   ||  Редстоун  ||  Слитки IC2  ||  Рубины
+	      if ((i == 260) || (i == 295) || (i == 15) || (i == 13386) || (i == 13283) || (i == 361) || (i == 362) || (i == 81) || (i == 13289) || (i == 13324) || (i == 12) || (i == 3) || (i == 4) || (i == 266) || (i == 265) || (i == 263) || (i == 264) || (i == 388) || (i == 331) || (i == 30067) || (i == 9281))
+	      {
+	    	  Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Запрещено переименовывать данный предмет!");
+	    	  e.setCancelled(true);
+	      }
+	    }
+	}
+	
+	// При нажатии на наковальню
+	@EventHandler (priority = EventPriority.HIGHEST)
+	public void onAnvilClick(InventoryClickEvent e)
+	{
+	  if ((e.getInventory() != null) && (e.getCurrentItem() != null) && (e.getView().getPlayer() != null) && (e.getView().getPlayer().getName() != null) && (e.getInventory().getType().equals(InventoryType.ANVIL)))
+	  {
+	    // Фикс стаканных ресурсов
+	    if ((e.getRawSlot() == 2) && (e.getCurrentItem().getAmount() > 1))
+	     {
+	      e.setCancelled(true);
+	      Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Это запрещено делать!");
+	    }
+	  }
+	}
+	
+	// BugsFix
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onAnvilClick1(final InventoryClickEvent e) {
+        if (e.getInventory() == null || e.getCurrentItem() == null || e.getView().getPlayer() == null || e.getView().getPlayer().getName() == null || !e.getInventory().getType().equals((Object)InventoryType.ANVIL)) {
+            return;
+        }
+        if (e.getRawSlot() == 2 && e.getCurrentItem().getAmount() > 1) {
+            e.setCancelled(true);
+            Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Стаканные ресурсы чаровать запрещено!");
+        }
+    }
+}

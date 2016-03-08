@@ -1,0 +1,78 @@
+﻿package relevant_craft.test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
+
+public class Main extends JavaPlugin implements Listener 
+{	
+	public static Main instance;
+	private BukkitTask task;
+	private Map<Block, String> inPt = new HashMap<Block, String>();
+	private Map<String, Block> inPtPl = new HashMap<String, Block>();
+	
+	public void onEnable()
+	{
+		getLogger().info("[RC-Fix] by VENTO Запущен!");
+		Bukkit.getPluginManager().registerEvents(this, this);
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.AnvilFix(), this);				//Запускаем AnvilFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.BlockedCmds(), this);			//Запускаем BlockedCmds
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.BlockPlace(), this);				//Запускаем BlockPlace
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.DoubleGuiFix(), this);			//Запускаем DoubleGuiFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.InteractFix(), this);			//Запускаем InteractFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.NearPlace(), this);				//Запускаем NearPlace
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.PexFix(), this);					//Запускаем PexFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.RightClick(), this);				//Запускаем RightClick
+		//Bukkit.getPluginManager().registerEvents(new relevant_craft.rc_fix.fixes.TrampleFix(), this);					//Запускаем TrampleFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.UranFix(), this);				//Запускаем UranFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.BiblioCraftFix(), this);	//Запускаем Other/BiblioCraftFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.ChatFix(), this);			//Запускаем Other/ChatFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.EnchTableFix(), this);		//Запускаем Other/EnchTableFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.ExplotionFix(), this);		//Запускаем Other/ExplotionFix
+		//Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.FactoriFix(), this);		//Запускаем Other/FactoriFix
+		//Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.MenuFix(), this);		//Запускаем Other/MenuFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.MFSUFix(), this);			//Запускаем Other/MFSUFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.MinecartFix(), this);		//Запускаем Other/MinecartFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.NpcFix(), this);			//Запускаем Other/NpcFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.SignFix(), this);			//Запускаем Other/SignFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.TinkerFix(), this);		//Запускаем Other/TinkerFix
+		instance = this;
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.TradeOMatFix(), this);		//Запускаем Other/TradeOMatFix
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.vento.rc_fix.fixes.other.TreeDupeFix(), this);		//Запускаем Other/TreeDupeFix
+		//Bukkit.getPluginManager().registerEvents(new relevant_craft.rc_fix.fixes.other.TreeFix(), this);				//Запускаем Other/TreeFix
+		//this.scheduleFieldResetTask();
+	}
+	
+	// TreeFix
+	/*private void scheduleFieldResetTask() {
+        this.task = Bukkit.getScheduler().runTaskTimer((Plugin)this, (Runnable)new Runnable() {
+            @Override
+            public void run() {
+                for (final World world : Bukkit.getWorlds()) {
+                    try {
+                        final Method declaredMethod = world.getClass().getDeclaredMethod("getHandle", (Class<?>[])new Class[0]);
+                        declaredMethod.setAccessible(true);
+                        final Object invoke = declaredMethod.invoke(world, new Object[0]);
+                        final Field field = invoke.getClass().getField("captureTreeGeneration");
+                        field.setAccessible(true);
+                        field.set(invoke, false);
+                    }
+                    catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchFieldException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }, 0L, 1L);
+    }*/
+	
+	public void onDisable()
+	{
+		//this.task.cancel();
+		getLogger().info("[RC-Fix] by VENTO Выключен!");
+	}
+}

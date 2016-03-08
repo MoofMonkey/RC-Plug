@@ -1,0 +1,42 @@
+package relevant_craft.vento.rc_fix.fixes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+public class UranFix implements Listener {
+
+	// Фикс от подбирания урана (только в защитном костюме)
+	@EventHandler 
+	   public void onFixUran(PlayerPickupItemEvent e) {
+	       Player p = e.getPlayer();
+	     
+	       int item = e.getItem().getItemStack().getTypeId();
+	       if(item == 30047 || item == 30048 || item == 30049 || item == 30050 || item == 30051 || item == 30052 || item == 30053 || item == 30054 || item == 30055 || item == 30056 || item == 30057|| item == 30058 || item == 30059 || item == 30060 || item == 30061 || item == 30042 || item == 30243 || item == 30207 || item == 30102 || item == 30101) 
+	       {    
+	           if (p.getInventory().getHelmet() == null || p.getInventory().getChestplate() == null || p.getInventory().getLeggings() == null || p.getInventory().getBoots() == null) {
+	        	   e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Подбирать уран можно только в защитном костюме!"); 
+	        	   e.setCancelled(true);
+	           } else {
+	               int h = p.getInventory().getHelmet().getTypeId();
+	               int c = p.getInventory().getChestplate().getTypeId();
+	               int l = p.getInventory().getLeggings().getTypeId();
+	               int b = p.getInventory().getBoots().getTypeId();
+	               if(h == 30082 && c == 30081 && l == 30080 && b == 30211)    
+	               {
+	               } else 
+	               {
+	            	   e.getPlayer().sendMessage("§a[§6RC-Fix§a]§c Подбирать уран можно только в защитном костюме!");
+	            	   e.setCancelled(true);
+	               }
+	           }
+	       }
+	     
+	   }
+}

@@ -1,0 +1,8 @@
+name: RC-Fix
+main: relevant_craft.test.Main
+author: VENTO
+version: 1.3.0
+commands:
+  debugtps:
+    description: Выводит TPS 5 секунд 10 раз
+    usage: /debugtps

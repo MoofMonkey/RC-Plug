@@ -1,0 +1,5 @@
+package relevant_craft.vento.rc_fix.events;
+
+public class onEnchant {
+
+}

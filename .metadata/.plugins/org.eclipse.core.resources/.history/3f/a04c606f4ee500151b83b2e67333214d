@@ -1,0 +1,52 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+
+public class TradeOMatFix implements Listener {
+	
+    //Фикс дюпа капсул материи.
+    @EventHandler
+    public void onInventoryInteract(InventoryClickEvent e)
+    {
+	    if(e.getInventory() != null && e.getCurrentItem() != null && e.getView().getPlayer() != null && e.getInventory().getTitle().equalsIgnoreCase("Trade-O-Mat"))
+	    {
+	    	if(e.getClick() == ClickType.NUMBER_KEY)
+	    	{
+	    		e.setCancelled(true); 
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Данный вид перемещения предметов запрещён!");
+	    	}
+	    	if(e.getCurrentItem().getTypeId() == 30039 || e.getCurrentItem().getTypeId() == 30237 || e.getCurrentItem().getTypeId() == 25131)
+	    	{
+	    		Bukkit.getServer().getPlayer(e.getView().getPlayer().getName()).sendMessage("§a[§6RC-Fix§a]§c Запрещено класть этот тип ресурсов в торговый аппарат!");
+	    		e.setCancelled(true);
+	    	}
+	    	else
+	    	{
+	    		return;
+	    	}
+	    }
+	    else
+	    {
+	    	return;
+	    }
+    }
+
+	@EventHandler (priority = EventPriority.HIGHEST)
+	public void on1(InventoryClickEvent e)
+	{
+		if ((e.getInventory() != null) && (e.getCurrentItem() != null) && (e.getInventory().getType().equals("ic2.core.block.personal.ContainerTradeOMatOpen")))
+	    {
+	      int i = e.getCurrentItem().getTypeId();
+	      // Яблоко || Семена пшеницы || Железная руда || Вишня (F) || Капля меда || Семена тыквы || Семена арбуза || Кактус || Медвяная роса || Фосфор || Песок || Земля || Булыжник
+	      if (i == 25131) 
+	      {
+	    	  e.setCancelled(true);
+	      }
+	    }
+	}
+}

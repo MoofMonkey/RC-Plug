@@ -1,0 +1,31 @@
+package relevant_craft.vento.rc_fix.fixes.other;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+public class ChatFix implements Listener {
+	
+	// ChatFix 
+	@EventHandler (priority = EventPriority.HIGHEST)
+    public void onPlayeSendCmds(final PlayerCommandPreprocessEvent e) {
+        if (e.getPlayer() == null || e.getMessage() == null) {
+            return;
+        }
+        final String m = e.getMessage();
+        if (m.length() <= 80) {
+            return;
+        }
+        final Player p = e.getPlayer();
+        final String c = " ";
+        final int len = m.length();
+        final int newlen = m.replaceAll(c, "").length();
+        final int space = len - newlen;
+        if (space < 4) {
+            e.setCancelled(true);
+        }
+    }
+
+}

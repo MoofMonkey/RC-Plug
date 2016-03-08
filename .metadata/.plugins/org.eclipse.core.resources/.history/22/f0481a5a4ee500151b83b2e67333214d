@@ -1,0 +1,31 @@
+﻿package relevant_craft.test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
+
+public class Main extends JavaPlugin implements Listener 
+{	
+	public static Main instance;
+	private BukkitTask task;
+	private Map<Block, String> inPt = new HashMap<Block, String>();
+	private Map<String, Block> inPtPl = new HashMap<String, Block>();
+	
+	public void onEnable()
+	{
+		getLogger().info("[RC-Fix] Запущен!");
+		Bukkit.getPluginManager().registerEvents(this, this);
+		Bukkit.getPluginManager().registerEvents(new relevant_craft.test.fixes.AnvilFix(), this);				//Запускаем AnvilFix
+	}
+	
+	public void onDisable()
+	{
+		//this.task.cancel();
+		getLogger().info("[RC-Fix] by VENTO Выключен!");
+	}
+}
